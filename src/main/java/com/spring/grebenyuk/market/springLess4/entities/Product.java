@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "products")
 @Data
 @NoArgsConstructor
-public class Product implements Comparable<Product>{
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +21,7 @@ public class Product implements Comparable<Product>{
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
-    private List<Order> orders;
-
     @Column(name = "price")
     private int price;
 
-    public int getPrice() {
-        return price;
-    }
-
-    @Override
-    public int compareTo(Product o) {
-        int comparePrice = o.getPrice();
-        return this.price - comparePrice;
-    }
 }

@@ -15,4 +15,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
     List<Product> findAllByPriceGreaterThan(int min, Pageable pageable);
     List<Product> findAllByPriceLessThan(int max, Pageable pageable);
 
+
 }

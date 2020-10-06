@@ -1,6 +1,5 @@
 package com.spring.grebenyuk.market.springLess4.services;
 
-import com.spring.grebenyuk.market.springLess4.dto.ProductDto;
 import com.spring.grebenyuk.market.springLess4.entities.Product;
 import com.spring.grebenyuk.market.springLess4.repositories.ProductRepository;
 import com.spring.grebenyuk.market.springLess4.spesifications.ProductSpecific;
@@ -15,7 +14,6 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class ProductService {
-
     private ProductRepository productRepository;
 
     public Page<Product> findAll(String title, Integer min, Integer max, int page, int size){
@@ -36,4 +34,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public Product saveOrUpdate(Product product) {
+        return productRepository.save(product);
+    }
 }

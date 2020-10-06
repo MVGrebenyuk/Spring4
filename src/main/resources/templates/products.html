@@ -12,6 +12,7 @@
 <h2><center>ПРОДУКТЫ</center></h2><br>
 <div class="container">
 <h3>Фильтрация</h3>
+    <h2></h2>
 <form method="get" th:action="@{/products}">
     <label for ="minPrice">Минимальная цена товара</label>
     <input class ="form control" th:value="${param.min != null ? param.min : null}" name="min" type="number" id="minPrice">
@@ -29,6 +30,7 @@
         <th>ID</th>
         <th>Наименование продукта</th>
         <th>Цена</th>
+        <th>Кнопки</th>
     </tr>
         </thead>
         <tbody>
@@ -36,6 +38,7 @@
         <td th:text="${p.id}"></td>
         <td th:text="${p.title}"></td>
         <td th:text="${p.price}"></td>
+        <td><a th:href="@{'/products/edit' + ${p.id}}" class="button">Change</a> </td>
     </tr>
         </tbody>
     </table>

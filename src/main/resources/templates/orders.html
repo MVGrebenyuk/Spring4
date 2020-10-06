@@ -15,18 +15,17 @@
         <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Владелец</th>
-            <th>Товар</th>
+            <th>Покупатель</th>
             <th>Цена</th>
+            <th text="${orderes.price}"></th>
+        </tr>
+        <tr th:each="ord : ${orderes}">
+            <td th:text="${ord.id}" />
+            <td th:text="${ord.customer.name}" />
+            <td th:text="${ord.price}" />
         </tr>
         </thead>
         <tbody>
-        <tr th: th:each="o : ${orders}">
-            <td th:text="${o}"/>
-           <!-- <td th:text="${o.customer}"/>
-            <td th:text="${o.product}"/>
-            <td th:text="${o.currentPrice}"/> -->
-        </tr>
         </tbody>
     </table>
 </div>

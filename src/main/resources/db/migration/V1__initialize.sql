@@ -14,7 +14,7 @@ create table orders (
     id bigserial primary key,
     customer_id bigint references customers(id),
     product_id bigint references products(id),
-    current_price int
+    price int
 );
 
 insert into  customers (name) values
@@ -37,6 +37,6 @@ values
 ('Cellphone', 45),
 ('Overlord', 26);
 
-insert into orders (customer_id, product_id, current_price)
+insert into orders (customer_id, product_id, price)
 values
 (1, 1, 24);
