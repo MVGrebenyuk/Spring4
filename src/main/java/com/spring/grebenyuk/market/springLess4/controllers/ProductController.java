@@ -4,6 +4,7 @@ import com.spring.grebenyuk.market.springLess4.dto.ProductDto;
 import com.spring.grebenyuk.market.springLess4.entities.Customer;
 import com.spring.grebenyuk.market.springLess4.entities.Product;
 import com.spring.grebenyuk.market.springLess4.repositories.CustomerRepository;
+import com.spring.grebenyuk.market.springLess4.services.CartService;
 import com.spring.grebenyuk.market.springLess4.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.hibernate.ResourceClosedException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProductController {
     private ProductService productService;
+    private CartService service;
 
     @GetMapping
     public String getFilter(Model model,
@@ -46,6 +49,23 @@ public class ProductController {
         model.addAttribute("product", p);
         return "EditProduct";
     }
+
+    @GetMapping("/addProd{id}")
+    public String addProd(@PathVariable Long id) {
+        boolean flag = true;
+    Product prod = productService.findOneById(id);
+        List<Product> list = service.showProducts();
+        for(Product p: list){
+            if(p.getId().equals(prod.getId())){
+                productService.increment(prod);
+                flag = false;
+            }
+        }
+        if (flag == true){
+            service.addProduct(prod);
+        }
+            return "redirect:/products";
+        }
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Product product){

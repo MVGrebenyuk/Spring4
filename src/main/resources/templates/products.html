@@ -30,7 +30,6 @@
         <th>ID</th>
         <th>Наименование продукта</th>
         <th>Цена</th>
-        <th>Кнопки</th>
     </tr>
         </thead>
         <tbody>
@@ -38,12 +37,14 @@
         <td th:text="${p.id}"></td>
         <td th:text="${p.title}"></td>
         <td th:text="${p.price}"></td>
-        <td><a th:href="@{'/products/edit' + ${p.id}}" class="button">Change</a> </td>
+        <td>
+            <a class="btn btn-success" th:href="@{'/products/addProd' + ${p.id}}">В корзину</a>
+        </td>
     </tr>
         </tbody>
     </table>
 </div>
-<nav aria-label="Page navigation example">
+<!--<nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item" th:classappend="${products.isFirst() ? 'disable' : ''}">
             <a class="page-link"
@@ -57,6 +58,6 @@
                th:href="@{'/products?p=' + ${products.nextOrLastPageable().getPageNumber() + 1}}">Next</a>
         </li>
     </ul>
-</nav>
+</nav> -->
 </body>
 </html>

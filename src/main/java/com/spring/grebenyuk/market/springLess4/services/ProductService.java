@@ -30,11 +30,32 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        productRepository.deleteAll();
+    }
+
+
+    public Page<Product> findAll(Specification<Product> spec, int page, int size) {
+        return productRepository.findAll(spec, PageRequest.of(page, size));
+    }
+
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);
     }
 
+    public Product findOneById(Long id){
+        return productRepository.findProductById(id);
+    }
+
     public Product saveOrUpdate(Product product) {
         return productRepository.save(product);
+    }
+
+    public void increment(Product product){
+        product.setQuantity(product.getQuantity() + 1);
     }
 }
