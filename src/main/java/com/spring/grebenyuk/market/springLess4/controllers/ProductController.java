@@ -5,6 +5,7 @@ import com.spring.grebenyuk.market.springLess4.entities.Customer;
 import com.spring.grebenyuk.market.springLess4.entities.Product;
 import com.spring.grebenyuk.market.springLess4.repositories.CustomerRepository;
 import com.spring.grebenyuk.market.springLess4.services.CartService;
+import com.spring.grebenyuk.market.springLess4.services.CategoriesService;
 import com.spring.grebenyuk.market.springLess4.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.hibernate.ResourceClosedException;
@@ -27,6 +28,7 @@ import java.util.Optional;
 public class ProductController {
     private ProductService productService;
     private CartService service;
+    private CategoriesService categoriesService;
 
     @GetMapping
     public String getFilter(Model model,
@@ -40,6 +42,7 @@ public class ProductController {
 
         Page<Product> products = productService.findAll(title, min, max, page-1, 5);
         model.addAttribute("products", products);
+        model.addAttribute("categories", categoriesService.findAll());
         return "products";
     }
 

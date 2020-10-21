@@ -10,6 +10,12 @@
 <body>
 <div th:replace="~{navigation :: navigation(Products)}" />
 <h2><center>ПРОДУКТЫ</center></h2><br>
+<div class="form-group" th:each="c: ${categories}">
+    <label for="exampleFormControlSelect1" th:text="${c.name}"></label>
+    <select class="form-control" id="exampleFormControlSelect1" >
+        <option th:each="p: ${c.products}" th:text="${p.title}"></option>
+    </select>
+</div>
 <div class="container">
 <h3>Фильтрация</h3>
     <h2></h2>

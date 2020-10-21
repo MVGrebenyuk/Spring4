@@ -52,23 +52,40 @@ create table order_items (
                              quantity                int
 );
 
+create table categories (
+                            id bigserial primary key,
+                            name varchar(100)
+);
+
+create table products_categories(
+    product_id integer REFERENCES products(id),
+    categories_id integer REFERENCES categories (id)
+);
+
+
+insert into categories(name) values
+('Кексики'),
+('Тортики'),
+('Печеньки');
+
+
 insert into products (title, price)
 values
-('Bread1', 1),
-('Bread2', 2),
-('Bread3', 3),
-('Bread4', 32),
-('Bread5', 42),
-('Bread6', 52),
-('Bread7', 32),
-('Bread8', 42),
-('Bread9', 552),
-('Bread10', 32),
-('Bread11', 122),
-('Bread12', 312),
-('Bread13', 22),
-('Bread14', 432),
-('Bread15', 532),
+('Кекс1', 1),
+('Кекс2', 2),
+('Кекс3', 3),
+('Кекс4', 32),
+('Кекс5', 42),
+('Тортик6', 52),
+('Тортик7', 32),
+('Тортик8', 42),
+('Тортик9', 552),
+('Тортик10', 32),
+('Печенька11', 122),
+('Печенька12', 312),
+('Печенька13', 22),
+('Печенька14', 432),
+('Печенька15', 532),
 ('Bread16', 542),
 ('Bread17', 232),
 ('Bread18', 22),
@@ -79,3 +96,20 @@ values
 ('Bread23', 22),
 ('Bread24', 22),
 ('Bread25', 22);
+
+insert into products_categories (product_id, categories_id) values
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(14, 3),
+(15, 3);
